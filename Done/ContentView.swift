@@ -10,11 +10,13 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Grubas do budy")
-                .font(.custom("InterVariable", size: 45))
+            AllCircleView().frame(width: 500,height: 350)
+            HStack{
+                PlusRoundRecView()
+                Spacer().frame(width:350)
+                    
+            }
+            Spacer()
         }
         .padding()
     }

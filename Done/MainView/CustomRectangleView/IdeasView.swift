@@ -9,7 +9,18 @@ import SwiftUI
 
 struct IdeasView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        UnevenRoundedRectangle(
+            topLeadingRadius: 20,
+            bottomLeadingRadius: 20,
+            bottomTrailingRadius: 0,
+            topTrailingRadius: 0
+        )
+        .frame(width: 140, height: 60)
+        .overlay(
+            Text("Ideas")
+                .foregroundColor(.white)
+                .font(.custom("InterVariable-Thin", size: 45))
+        )
     }
 }
 

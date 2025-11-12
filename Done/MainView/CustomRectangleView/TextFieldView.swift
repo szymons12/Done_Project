@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct TextFieldView: View {
+    @State private var username: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            UnevenRoundedRectangle(
+                topLeadingRadius: 20,
+                bottomLeadingRadius: 20,
+                bottomTrailingRadius: 0,
+                topTrailingRadius: 0
+            )
+            .stroke(.black, style: StrokeStyle(
+                dash: [10, 10]
+            ))
+            . frame(width: 270,height: 270)
+            .overlay(
+                List{
+                    Text("cos")
+                }
+                )
+             //Overlay
+        
     }
 }
 
