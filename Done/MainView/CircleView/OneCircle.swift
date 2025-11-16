@@ -14,8 +14,12 @@ struct OneCircle: View {
     
     @State private var inputContent: String = ""
     @State private var displayedContent: String = ""
-    @State private var showBack = true
-    @State private var showTask = false
+    @State private var showBack = true  // odslona drugiej czesci kola
+    @State private var showTask = false // chowanie zapisanej wartosci
+    @State private var hideSaveBtn = true // chowanie przycisku save
+  
+    
+    
     var body: some View {
         ZStack{
             Circle()
@@ -37,28 +41,49 @@ struct OneCircle: View {
                                 .frame(width: 150, height: 150, alignment: .center)
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
-                        }
-                        else
-                        {
-                            TextField("Type sth...", text: $inputContent, axis: .vertical)
+                        } //IF
+                            else {
+                                ZStack(alignment: .center) {
+                                    if inputContent.isEmpty {
+                                        Text("type smth...")
+                                            .foregroundColor(.gray)
+                                            .multilineTextAlignment(.center)
+                                    }
+                                    
+                                    
+                                    TextField("", text: $inputContent, axis: .vertical)
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                }
                                 .frame(width: 150, height: 150, alignment: .center)
-                                .foregroundColor(.white)
-                                .multilineTextAlignment(.center)
-                        }
-                        Button {
-                            let newTask = Task(content: inputContent, tasknum: .task1)
-                            context.insert(newTask)
-                            displayedContent = inputContent
-                            showTask = true
-                        } label: {
-                            Text("save")
+                                
+                            } // Else
                             
+                            Button {
+                                let newTask = Task(content: inputContent, tasknum: .task1)
+                                context.insert(newTask)
+                                displayedContent = inputContent
+                                showTask = true
+                                hideSaveBtn = false
+                            } label: {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .frame(width: 70, height: 30)
+                                    .overlay(Text("save")
+                                        .foregroundColor(.black))
+                                    .foregroundColor(.white)
+                                
+                            }.opacity(hideSaveBtn ? 1 : 0)
                         }
+                        
+
                        
-                    }
-                )
+                    
+                ) //Overlay
                 .opacity(showBack ? 1 : 0)
         } // ZStack
+        .contextMenu {
+                       Button("Edit", action: { print("Wybrano 1") })
+                       Button("Usuń", role: .destructive, action: { print("Usuń") })}
         .animation(.easeInOut(duration: 0.4), value: showBack)
         .onTapGesture {
             showBack.toggle()}
