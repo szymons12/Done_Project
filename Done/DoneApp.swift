@@ -12,8 +12,9 @@ import SwiftData
 struct DoneApp: App {
     var body: some Scene {
         WindowGroup {
-            TestView()
+            MainView()
                 .modelContainer(for:Task.self)
+                .preferredColorScheme(.light)
         }
     }
 }

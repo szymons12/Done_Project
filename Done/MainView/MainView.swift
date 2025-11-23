@@ -9,7 +9,21 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        ZStack {
+            VStack{
+                SecCircle().frame(width: 300,height: 300)
+                HStack{
+                    Spacer(minLength: 0)
+                    IdeasView()
+                }
+                    HStack{
+                        PlusRoundRecView()
+                        Spacer(minLength: 0)
+                        TextFieldView()
+                    }
+            }
+        }
     }
 }
 

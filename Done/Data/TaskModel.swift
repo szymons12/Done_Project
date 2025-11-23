@@ -28,3 +28,8 @@ class Task{
         
     }
     
+// --------------------------------------------------------------------------------------
+struct Notebook: Identifiable, Codable{
+    var id: UUID = UUID()
+    var note: String
+}
